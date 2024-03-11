@@ -1,0 +1,36 @@
+CAPI=2:
+
+name: AFRL:ram:wishbone_classic_block_ram:1.0.0
+description: A wishbone classic block ram.
+
+filesets:
+  src:
+    files:
+      - src/wishbone_classic_block_ram.v
+    file_type: verilogSource
+  
+  tb:
+    files:
+      - tb/tb_wishbone_slave.v : { file_type: verilogSource }
+
+  dep:
+    depend:
+      - AFRL:utility:helper:1.0.0
+      - AFRL:ram:dc_block_ram:1.0.0
+      - AFRL:bus:up_wishbone_classic:1.0.0
+      
+  dep_tb:
+    depend:
+      - AFRL:simulation:clock_stimulator
+      - AFRL:utility:sim_helper
+    
+targets:
+  default: &default
+    description: Default for IP intergration.
+    filesets: [src, dep]
+
+  sim: &sim
+    <<: *default
+    default_tool: icarus
+    toplevel: tb_wishbone_slave
+    filesets_append: [tb, dep_tb]
