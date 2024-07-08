@@ -127,9 +127,9 @@ module axi_lite_block_ram #(
     .wr_addr(up_waddr)
   );
 
-  always @(posedge clk)
+  always @(posedge aclk)
   begin
-    if(rst)
+    if(arstn == 1'b0)
     begin
       up_wack <= 1'b0;
       up_rack <= 1'b0;
