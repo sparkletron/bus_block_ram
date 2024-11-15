@@ -1,0 +1,1 @@
+﻿NDMenu.OnSectionLoaded("files.js",[[1,"axi_lite_block_ram.v"],[1,"wishbone_classic_block_ram.v"]]);

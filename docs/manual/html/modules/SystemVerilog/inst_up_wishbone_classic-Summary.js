@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("SystemVerilogModule:inst_up_wishbone_classic","inst_up_wishbone_classic");NDSummary.OnSummaryLoaded("SystemVerilogModule:inst_up_wishbone_classic",[["SystemVerilog","SystemVerilog"]],[["Modules","Module"]],[[43,0,0,"inst_up_wishbone_classic"]]);

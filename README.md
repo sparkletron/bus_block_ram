@@ -1,5 +1,8 @@
 # BUS Block RAM
 ### Create block RAM using various bus interfaces (Wishbone Classic, AXI LITE)
+
+![image](docs/manual/img/AFRL.png)
+
 ---
 
    author: Jay Convertino  
@@ -19,17 +22,24 @@
 #### Previous
   - none
 
-### Dependencies
+### DOCUMENTATION
+  For detailed usage information, please navigate to one of the following sources. They are the same, just in a different format.
+
+  - [bus_block_ram.pdf](docs/manual/bus_block_ram.pdf)
+  - [github page](https://johnathan-convertino-afrl.github.io/bus_block_ram/)
+
+### DEPENDENCIES
 #### Build
+
   - AFRL:utility:helper:1.0.0
   
 #### Simulation
+
   - AFRL:simulation:fifo_stimulator
   - AFRL:simulation:clock_stimulator
   - AFRL:utility:sim_helper
   
-### IP USAGE
-#### Parameters
+### PARAMETERS
 
 * ADDRESS_WIDTH : Address width of bus
 * BUS_WIDTH     : Data bus width in bytes
@@ -47,13 +57,13 @@
 
 * tb_wishbone_slave.v
   
-### fusesoc
+### FUSESOC
 
 * axi_lite_block_ram.core created for axi.
 * wishbone_classic_block_ram.core create for wishbone classic.
 * Simulation uses icarus to run data through the core.
 
-#### TARGETS
+#### Targets
 
 * RUN WITH: (fusesoc run --target=sim VENDER:CORE:NAME:VERSION)
   - default (for IP integration builds)

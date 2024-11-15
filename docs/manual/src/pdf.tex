@@ -1,0 +1,19 @@
+\documentclass[usletter]{article}
+\usepackage{DejaVuSans}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{pdfpages}
+\usepackage[hidelinks]{hyperref}
+\begin{document}
+
+  \include{src/common.tex}
+
+  %module documentation section
+
+  \includepdf[pages=-, addtotoc={1,subsection,1,axi\_lite\_block\_ram,p1}, pagecommand={}]{axi_lite_block_ram-v.pdf}
+
+  \includepdf[pages=-, addtotoc={1,subsection,1,wishbone\_classic\_block\_ram,p1}, pagecommand={}]{wishbone_classic_block_ram-v.pdf}
+
+\end{document}

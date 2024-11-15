@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("axi",["Module","File"],[["axi_lite_block_ram",,[[,,,,0,"File:axi_lite_block_ram.v:axi_lite_block_ram","SystemVerilogModule:axi_lite_block_ram"],[,"axi_lite_block_ram.v",,,1,"File:axi_lite_block_ram.v:axi_lite_block_ram.v"]]]]);

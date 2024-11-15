@@ -1,0 +1,1 @@
+﻿NDMenu.OnSectionLoaded("modules.js",[[1,"axi_lite_block_ram"],[1,"inst_dc_block_ram"],[1,"inst_up_axi"],[1,"inst_up_wishbone_classic"],[1,"wishbone_classic_block_ram"]]);

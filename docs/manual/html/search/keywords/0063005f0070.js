@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("c_p",["Variable"],[["c_PWR_RAM",,[["wishbone_classic_block_ram",,,,0,"File:wishbone_classic_block_ram.v:wishbone_classic_block_ram.c_PWR_RAM","SystemVerilogModule:wishbone_classic_block_ram:c_PWR_RAM"]]]]);
