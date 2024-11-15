@@ -44,7 +44,7 @@
 * ADDRESS_WIDTH : Address width of bus
 * BUS_WIDTH     : Data bus width in bytes
 * DEPTH         : How many words deep the RAM will be (word = BUS_WIDTH).
-* BIN_FILE      : File to initialize RAM with ("" = none).
+* HEX_FILE      : HEX text File to initialize RAM with ("" = none).
 * RAM_TYPE      : Set the RAM type of the fifo.
 
 ### COMPONENTS
