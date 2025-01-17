@@ -31,7 +31,7 @@
 <A
  HREF="bus_block_ram_node19.html">
 <IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
-<A ID="tex2html100"
+<A ID="tex2html112"
   HREF="bus_block_ram_node1.html">
 <IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A>  
 <BR>
@@ -41,7 +41,7 @@
  HREF="bus_block_ram_node18.html">Simulation</A>
 <B> Previous:</B> <A
  HREF="bus_block_ram_node19.html">iverilog</A>
- &nbsp; <B>  <A ID="tex2html101"
+ &nbsp; <B>  <A ID="tex2html113"
   HREF="bus_block_ram_node1.html">Contents</A></B> 
 <BR>
 <BR></DIV>
@@ -52,7 +52,21 @@ cocotb</A>
 </H2>
 
 <P>
-Future simulations will use cocotb. This feature is not yet implemented.
+To use the cocotb tests you must install the following python libraries. Only AXI lite is supported for cocotb sims at the moment.
+<TABLE FRAME="VOID" CELLPADDING="4"><TR><TD>
+<PRE>
+  $ pip install cocotb
+  $ pip install cocotbext-axi
+</PRE>
+</TD></TR></TABLE>
+
+<P>
+Then you must use the cocotb sim target. In this case it is sim_cocotb. This target can be run with various parameters.
+<TABLE FRAME="VOID" CELLPADDING="4"><TR><TD>
+<PRE>
+  $ fusesoc run --target sim_cocotb AFRL:ram:axi_lite_block_ram:1.0.0 --BUS_WIDTH=8
+</PRE>
+</TD></TR></TABLE>
 
 <P>
 

@@ -1,0 +1,1 @@
+﻿NDSummary.OnToolTipsLoaded("SystemVerilogModule:tb_axi_lite_slave",{85:"<div class=\"NDToolTip TModule LSystemVerilog\"><div id=\"NDPrototype85\" class=\"NDPrototype\"><div class=\"PSection PPlainSection\"><span class=\"SHKeyword\">module</span> tb_axi_lite_slave ()</div></div><div class=\"TTSummary\">Test bench for axi lite slave</div></div>"});

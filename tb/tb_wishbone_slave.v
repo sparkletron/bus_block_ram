@@ -1,37 +1,58 @@
 //******************************************************************************
-/// @file    tb_wishbone_slave.v
-/// @author  JAY CONVERTINO
-/// @date    2021.06.23
-/// @brief   SIMPLE TEST BENCH
-///
-/// @LICENSE MIT
-///  Copyright 2021 Jay Convertino
-///
-///  Permission is hereby granted, free of charge, to any person obtaining a copy
-///  of this software and associated documentation files (the "Software"), to 
-///  deal in the Software without restriction, including without limitation the
-///  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or 
-///  sell copies of the Software, and to permit persons to whom the Software is 
-///  furnished to do so, subject to the following conditions:
-///
-///  The above copyright notice and this permission notice shall be included in 
-///  all copies or substantial portions of the Software.
-///
-///  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
-///  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
-///  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-///  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
-///  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
-///  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-///  IN THE SOFTWARE.
+// file:    tb_wishbone_slave.v
+//
+// author:  JAY CONVERTINO
+//
+// date:    2025/01/17
+//
+// about:   Brief
+// Test bench for wishbone_slave
+//
+// license: License MIT
+// Copyright 2025 Jay Convertino
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to
+// deal in the Software without restriction, including without limitation the
+// rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+// sell copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+// IN THE SOFTWARE.
+//
 //******************************************************************************
 
-`timescale 1 ns/10 ps
+`timescale 1ns/100ps
 
+/*
+ * Module: tb_wishbone_slave
+ *
+ * Test bench for wishbone slave
+ *
+ * Parameters:
+ *
+ *   ADDRESS_WIDTH   - Width of the axi address bus in bits.
+ *   BUS_WIDTH       - Bus width for data paths in bytes.
+ *   DEPTH           - Depth of the RAM in terms of data width words.
+ *   RAM_TYPE        - Used to set the ram_style atribute.
+ *   HEX_FILE        - Hex file to write to RAM.
+ */
 module tb_wishbone_slave #(
-  parameter IN_FILE_NAME = "in.bin",
-  parameter OUT_FILE_NAME = "out.bin",
-  parameter RAND_READY = 0);
+    parameter ADDRESS_WIDTH     = 32,
+    parameter BUS_WIDTH         = 4,
+    parameter DEPTH             = 512,
+    parameter RAM_TYPE          = "block",
+    parameter HEX_FILE          = ""
+  );
   
   reg         tb_data_clk = 0;
   reg         tb_rst = 0;
@@ -71,15 +92,19 @@ module tb_wishbone_slave #(
   localparam STATUS_REG  = 14'h8;
   localparam CONTROL_REG = 14'hC;
 
-  //device under test
+  // Module: inst_dc_block_ram
+  //
+  // Module instance of dc_block_ram
   wishbone_classic_block_ram #(
-    .ADDRESS_WIDTH(16),
-    .BUS_WIDTH(4)
+    .ADDRESS_WIDTH(ADDRESS_WIDTH),
+    .BUS_WIDTH(BUS_WIDTH),
+    .DEPTH(DEPTH),
+    .RAM_TYPE(RAM_TYPE),
+    .HEX_FILE(HEX_FILE)
   ) dut (
-    //clk reset
     .clk(tb_data_clk),
     .rst(tb_rst),
-    //Wishbone
+
     .s_wb_cyc(r_wb_cyc),
     .s_wb_stb(r_wb_stb),
     .s_wb_we(r_wb_we),

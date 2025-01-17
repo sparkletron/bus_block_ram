@@ -128,15 +128,27 @@ Below highlights important folders from the root of the directory.
 
 \section{Simulation}
 \par
-There are a few different simulations that can be run for this core.
+There are a few different simulations that can be run for this core. All currently use iVerilog (icarus) to run. The first is iverilog, which
+uses verilog only for the simulations. The other is cocotb. This does a unit test approach to the testing and gives a list of tests that pass
+or fail.
 
 \subsection{iverilog}
 \par
-iverilog is used for simple test benches for quick verification, visually, of the core.
+All simulation targets that do NOT have cocotb in the name use a verilog test bench with verilog stimulus components. For AXI Lite/Wishbone these
+are very simple read/writes without data verification.
 
 \subsection{cocotb}
 \par
-Future simulations will use cocotb. This feature is not yet implemented.
+To use the cocotb tests you must install the following python libraries. Only AXI lite is supported for cocotb sims at the moment.
+\begin{lstlisting}[language=bash]
+  $ pip install cocotb
+  $ pip install cocotbext-axi
+\end{lstlisting}
+
+Then you must use the cocotb sim target. In this case it is sim\_cocotb. This target can be run with various parameters.
+\begin{lstlisting}[language=bash]
+  $ fusesoc run --target sim_cocotb AFRL:ram:axi_lite_block_ram:1.0.0 --BUS_WIDTH=8
+\end{lstlisting}
 
 \newpage
 
@@ -148,6 +160,12 @@ There are two different BUS block RAM modules that can be used in a project.
 \begin{itemize}
 \item \textbf{axi\_lite\_block\_ram} AXI lite block RAM\\
 \item \textbf{wishbone\_classic\_block\_ram} Wishbone Classic block RAM\\
+\item \textbf{tb\_axi\_lite\_cocotb-py} Python axi lite cocotb test bench\\
+\item \textbf{tb\_axi\_lite\_cocotb-v}  Verilog axi lite cocotb test bench\\
+\item \textbf{tb\_axi\_lite\_slave-v} Verilog test bench for axi lite.\\
+\item \textbf{tb\_wishbone\_cocotb-py} Python wishbone cocotb test bench\\
+\item \textbf{tb\_wishbone\_cocotb-v}  Verilog wishbone cocotb test bench\\
+\item \textbf{tb\_wishbone\_slave-v} Verilog test bench for wishbone.\\
 \end{itemize}
-The next sections document the module in great detail.
+The next sections document the module.
 

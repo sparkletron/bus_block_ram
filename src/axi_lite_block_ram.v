@@ -100,6 +100,15 @@ module axi_lite_block_ram #(
     input                       s_axi_rready
   );
 
+  `include "util_helper_math.vh"
+
+  // var: c_PWR_RAM
+  // power of 2 conversion of DEPTH
+  localparam c_PWR_RAM  = clogb2(DEPTH);
+  // var: c_RAM_DEPTH
+  // create RAM depth based on power of two depth size.
+  localparam c_RAM_DEPTH = 2 ** c_PWR_RAM;
+
   // var: up_rreq
   // uP read bus request
   wire                      up_rreq;
@@ -108,10 +117,10 @@ module axi_lite_block_ram #(
   reg                       up_rack;
   // var: up_raddr
   // uP read bus address
-  wire  [ADDRESS_WIDTH-3:0] up_raddr;
+  wire  [ADDRESS_WIDTH-(ADDRESS_WIDTH/16)-1:0] up_raddr;
   // var: up_rdata
   // uP read bus request
-  wire  [(BUS_WIDTH*4)-1:0] up_rdata;
+  wire  [(BUS_WIDTH*8)-1:0] up_rdata;
 
   // var: up_wreq
   // uP write bus request
@@ -121,17 +130,19 @@ module axi_lite_block_ram #(
   reg                       up_wack;
   // var: up_waddr
   // uP write bus address
-  wire  [ADDRESS_WIDTH-3:0] up_waddr;
+  wire  [ADDRESS_WIDTH-(ADDRESS_WIDTH/16)-1:0] up_waddr;
   // var: up_wdata
   // uP write bus data
-  wire  [(BUS_WIDTH*4)-1:0] up_wdata;
+  wire  [(BUS_WIDTH*8)-1:0] up_wdata;
 
   //Group: Instantianted Modules
 
   // Module: inst_up_axi
   //
   // Module instance of up_axi for the AXI Lite bus to the uP bus.
-  up_axi inst_up_axi (
+  up_axi #(
+    .AXI_ADDRESS_WIDTH(ADDRESS_WIDTH)
+    ) inst_up_axi (
     .up_rstn (arstn),
     .up_clk (aclk),
     .up_axi_awvalid(s_axi_awvalid),
@@ -165,9 +176,9 @@ module axi_lite_block_ram #(
   //
   // Module instance of dc_block_ram that connects to the uP BUS directly.
   dc_block_ram #(
-    .RAM_DEPTH(DEPTH),
+    .RAM_DEPTH(c_RAM_DEPTH),
     .BYTE_WIDTH(BUS_WIDTH),
-    .ADDR_WIDTH(ADDRESS_WIDTH),
+    .ADDR_WIDTH(c_PWR_RAM),
     .HEX_FILE(HEX_FILE),
     .RAM_TYPE(RAM_TYPE)
   ) inst_dc_block_ram (
@@ -175,13 +186,13 @@ module axi_lite_block_ram #(
     .rd_rstn(arstn),
     .rd_en(up_rreq),
     .rd_data(up_rdata),
-    .rd_addr(up_raddr),
+    .rd_addr(up_raddr[c_PWR_RAM-1:0]),
     .wr_clk(aclk),
     .wr_rstn(arstn),
     .wr_en(up_wreq),
     .wr_ben({BUS_WIDTH{up_wreq}}),
     .wr_data(up_wdata),
-    .wr_addr(up_waddr)
+    .wr_addr(up_waddr[c_PWR_RAM-1:0])
   );
 
   // register reqest to the ack since it will always happen, even if the RAM address is invalid.

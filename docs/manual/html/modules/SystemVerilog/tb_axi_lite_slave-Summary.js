@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("SystemVerilogModule:tb_axi_lite_slave","tb_axi_lite_slave");NDSummary.OnSummaryLoaded("SystemVerilogModule:tb_axi_lite_slave",[["SystemVerilog","SystemVerilog"]],[["Modules","Module"]],[[85,0,0,"tb_axi_lite_slave"]]);

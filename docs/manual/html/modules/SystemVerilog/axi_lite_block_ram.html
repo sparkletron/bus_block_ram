@@ -16,6 +16,18 @@
  <div class="CBody"><p>axi lite block ram</p><div class="CHeading">Parameters</div><table class="CDefinitionList"><tr><td class="CDLEntry">ADDRESS_WIDTH<div class="CDLParameterType"><span class="SHKeyword">parameter</span></div></td><td class="CDLDefinition"><p>Width of the axi address bus in bits.</p></td></tr><tr><td class="CDLEntry">BUS_WIDTH<div class="CDLParameterType"><span class="SHKeyword">parameter</span></div></td><td class="CDLDefinition"><p>Bus width for data paths in bytes.</p></td></tr><tr><td class="CDLEntry">DEPTH<div class="CDLParameterType"><span class="SHKeyword">parameter</span></div></td><td class="CDLDefinition"><p>Depth of the RAM in terms of data width words.</p></td></tr><tr><td class="CDLEntry">RAM_TYPE<div class="CDLParameterType"><span class="SHKeyword">parameter</span></div></td><td class="CDLDefinition"><p>Used to set the ram_style atribute.</p></td></tr><tr><td class="CDLEntry">HEX_FILE<div class="CDLParameterType"><span class="SHKeyword">parameter</span></div></td><td class="CDLDefinition"><p>Hex file to write to RAM.</p></td></tr></table><div class="CHeading">Ports</div><table class="CDefinitionList"><tr><td class="CDLEntry">aclk</td><td class="CDLDefinition"><p>Clock for all devices in the core</p></td></tr><tr><td class="CDLEntry">arstn</td><td class="CDLDefinition"><p>Negative reset</p></td></tr><tr><td class="CDLEntry">s_axi_awvalid</td><td class="CDLDefinition"><p>Axi Lite aw valid</p></td></tr><tr><td class="CDLEntry">s_axi_awaddr</td><td class="CDLDefinition"><p>Axi Lite aw addr</p></td></tr><tr><td class="CDLEntry">s_axi_awprot</td><td class="CDLDefinition"><p>Axi Lite aw prot</p></td></tr><tr><td class="CDLEntry">s_axi_awready</td><td class="CDLDefinition"><p>Axi Lite aw ready</p></td></tr><tr><td class="CDLEntry">s_axi_wvalid</td><td class="CDLDefinition"><p>Axi Lite w valid</p></td></tr><tr><td class="CDLEntry">s_axi_wdata</td><td class="CDLDefinition"><p>Axi Lite w data</p></td></tr><tr><td class="CDLEntry">s_axi_wstrb</td><td class="CDLDefinition"><p>Axi Lite w strb</p></td></tr><tr><td class="CDLEntry">s_axi_wready</td><td class="CDLDefinition"><p>Axi Lite w ready</p></td></tr><tr><td class="CDLEntry">s_axi_bvalid</td><td class="CDLDefinition"><p>Axi Lite b valid</p></td></tr><tr><td class="CDLEntry">s_axi_bresp</td><td class="CDLDefinition"><p>Axi Lite b resp</p></td></tr><tr><td class="CDLEntry">s_axi_bready</td><td class="CDLDefinition"><p>Axi Lite b ready</p></td></tr><tr><td class="CDLEntry">s_axi_arvalid</td><td class="CDLDefinition"><p>Axi Lite ar valid</p></td></tr><tr><td class="CDLEntry">s_axi_araddr</td><td class="CDLDefinition"><p>Axi Lite ar addr</p></td></tr><tr><td class="CDLEntry">s_axi_arprot</td><td class="CDLDefinition"><p>Axi Lite ar prot</p></td></tr><tr><td class="CDLEntry">s_axi_arready</td><td class="CDLDefinition"><p>Axi Lite ar ready</p></td></tr><tr><td class="CDLEntry">s_axi_rvalid</td><td class="CDLDefinition"><p>Axi Lite r valid</p></td></tr><tr><td class="CDLEntry">s_axi_rdata</td><td class="CDLDefinition"><p>Axi Lite r data</p></td></tr><tr><td class="CDLEntry">s_axi_rresp</td><td class="CDLDefinition"><p>Axi Lite r resp</p></td></tr><tr><td class="CDLEntry">s_axi_rready</td><td class="CDLDefinition"><p>Axi Lite r ready</p></td></tr></table></div>
 </div>
 
+<a name="c_PWR_RAM"></a><a name="Topic97"></a><div class="CTopic TVariable LSystemVerilog">
+ <div class="CTitle">c_PWR_RAM</div>
+ <div id="NDPrototype97" class="NDPrototype WideForm"><div class="PSection PParameterSection CStyle"><div class="PParameterCells" data-WideColumnCount="3" data-NarrowColumnCount="2"><div class="PBeforeParameters" data-WideGridArea="1/1/2/2" data-NarrowGridArea="1/1/2/3" style="grid-area:1/1/2/2"><span class="SHKeyword">localparam</span> c_PWR_RAM = clogb2(</div><div class="PName InFirstParameterColumn InLastParameterColumn" data-WideGridArea="1/2/2/3" data-NarrowGridArea="2/1/3/2" style="grid-area:1/2/2/3">DEPTH</div><div class="PAfterParameters" data-WideGridArea="1/3/2/4" data-NarrowGridArea="3/1/4/3" style="grid-area:1/3/2/4">)</div></div></div></div>
+ <div class="CBody"><p>power of 2 conversion of DEPTH</p></div>
+</div>
+
+<a name="c_RAM_DEPTH"></a><a name="Topic98"></a><div class="CTopic TVariable LSystemVerilog">
+ <div class="CTitle">c_RAM_DEPTH</div>
+ <div id="NDPrototype98" class="NDPrototype"><div class="PSection PPlainSection"><span class="SHKeyword">localparam</span> c_RAM_DEPTH = <span class="SHNumber">2</span> ** c_PWR_RAM</div></div>
+ <div class="CBody"><p>create RAM depth based on power of two depth size.</p></div>
+</div>
+
 <a name="up_rreq"></a><a name="Topic32"></a><div class="CTopic TVariable LSystemVerilog">
  <div class="CTitle">up_rreq</div>
  <div id="NDPrototype32" class="NDPrototype"><div class="PSection PPlainSection"><span class="SHKeyword">wire</span> up_rreq</div></div>
@@ -28,15 +40,15 @@
  <div class="CBody"><p>uP read bus acknowledge</p></div>
 </div>
 
-<a name="up_raddr"></a><a name="Topic34"></a><div class="CTopic TVariable LSystemVerilog">
+<a name="up_raddr"></a><a name="Topic99"></a><div class="CTopic TVariable LSystemVerilog">
  <div class="CTitle">up_raddr</div>
- <div id="NDPrototype34" class="NDPrototype"><div class="PSection PPlainSection"><span class="SHKeyword">wire</span> [ADDRESS_WIDTH-<span class="SHNumber">3</span>:<span class="SHNumber">0</span>] up_raddr</div></div>
+ <div id="NDPrototype99" class="NDPrototype WideForm"><div class="PSection PParameterSection CStyle"><div class="PParameterCells" data-WideColumnCount="5" data-NarrowColumnCount="4"><div class="PBeforeParameters" data-WideGridArea="1/1/2/2" data-NarrowGridArea="1/1/2/5" style="grid-area:1/1/2/2"><span class="SHKeyword">wire</span> [ADDRESS_WIDTH-(</div><div class="PType InFirstParameterColumn" data-WideGridArea="1/2/2/3" data-NarrowGridArea="2/1/3/2" style="grid-area:1/2/2/3">ADDRESS_WIDTH</div><div class="PSymbols" data-WideGridArea="1/3/2/4" data-NarrowGridArea="2/2/3/3" style="grid-area:1/3/2/4">/</div><div class="PName InLastParameterColumn" data-WideGridArea="1/4/2/5" data-NarrowGridArea="2/3/3/4" style="grid-area:1/4/2/5"><span class="SHNumber">16</span></div><div class="PAfterParameters" data-WideGridArea="1/5/2/6" data-NarrowGridArea="3/1/4/5" style="grid-area:1/5/2/6">)<span class="SHNumber">-1</span>:<span class="SHNumber">0</span>] up_raddr</div></div></div></div>
  <div class="CBody"><p>uP read bus address</p></div>
 </div>
 
-<a name="up_rdata"></a><a name="Topic35"></a><div class="CTopic TVariable LSystemVerilog">
+<a name="up_rdata"></a><a name="Topic100"></a><div class="CTopic TVariable LSystemVerilog">
  <div class="CTitle">up_rdata</div>
- <div id="NDPrototype35" class="NDPrototype WideForm"><div class="PSection PParameterSection CStyle"><div class="PParameterCells" data-WideColumnCount="3" data-NarrowColumnCount="2"><div class="PBeforeParameters" data-WideGridArea="1/1/2/2" data-NarrowGridArea="1/1/2/3" style="grid-area:1/1/2/2"><span class="SHKeyword">wire</span> [(</div><div class="PName InFirstParameterColumn InLastParameterColumn" data-WideGridArea="1/2/2/3" data-NarrowGridArea="2/1/3/2" style="grid-area:1/2/2/3">BUS_WIDTH*<span class="SHNumber">4</span></div><div class="PAfterParameters" data-WideGridArea="1/3/2/4" data-NarrowGridArea="3/1/4/3" style="grid-area:1/3/2/4">)<span class="SHNumber">-1</span>:<span class="SHNumber">0</span>] up_rdata</div></div></div></div>
+ <div id="NDPrototype100" class="NDPrototype WideForm"><div class="PSection PParameterSection CStyle"><div class="PParameterCells" data-WideColumnCount="3" data-NarrowColumnCount="2"><div class="PBeforeParameters" data-WideGridArea="1/1/2/2" data-NarrowGridArea="1/1/2/3" style="grid-area:1/1/2/2"><span class="SHKeyword">wire</span> [(</div><div class="PName InFirstParameterColumn InLastParameterColumn" data-WideGridArea="1/2/2/3" data-NarrowGridArea="2/1/3/2" style="grid-area:1/2/2/3">BUS_WIDTH*<span class="SHNumber">8</span></div><div class="PAfterParameters" data-WideGridArea="1/3/2/4" data-NarrowGridArea="3/1/4/3" style="grid-area:1/3/2/4">)<span class="SHNumber">-1</span>:<span class="SHNumber">0</span>] up_rdata</div></div></div></div>
  <div class="CBody"><p>uP read bus request</p></div>
 </div>
 
@@ -52,15 +64,15 @@
  <div class="CBody"><p>uP write bus acknowledge</p></div>
 </div>
 
-<a name="up_waddr"></a><a name="Topic38"></a><div class="CTopic TVariable LSystemVerilog">
+<a name="up_waddr"></a><a name="Topic101"></a><div class="CTopic TVariable LSystemVerilog">
  <div class="CTitle">up_waddr</div>
- <div id="NDPrototype38" class="NDPrototype"><div class="PSection PPlainSection"><span class="SHKeyword">wire</span> [ADDRESS_WIDTH-<span class="SHNumber">3</span>:<span class="SHNumber">0</span>] up_waddr</div></div>
+ <div id="NDPrototype101" class="NDPrototype WideForm"><div class="PSection PParameterSection CStyle"><div class="PParameterCells" data-WideColumnCount="5" data-NarrowColumnCount="4"><div class="PBeforeParameters" data-WideGridArea="1/1/2/2" data-NarrowGridArea="1/1/2/5" style="grid-area:1/1/2/2"><span class="SHKeyword">wire</span> [ADDRESS_WIDTH-(</div><div class="PType InFirstParameterColumn" data-WideGridArea="1/2/2/3" data-NarrowGridArea="2/1/3/2" style="grid-area:1/2/2/3">ADDRESS_WIDTH</div><div class="PSymbols" data-WideGridArea="1/3/2/4" data-NarrowGridArea="2/2/3/3" style="grid-area:1/3/2/4">/</div><div class="PName InLastParameterColumn" data-WideGridArea="1/4/2/5" data-NarrowGridArea="2/3/3/4" style="grid-area:1/4/2/5"><span class="SHNumber">16</span></div><div class="PAfterParameters" data-WideGridArea="1/5/2/6" data-NarrowGridArea="3/1/4/5" style="grid-area:1/5/2/6">)<span class="SHNumber">-1</span>:<span class="SHNumber">0</span>] up_waddr</div></div></div></div>
  <div class="CBody"><p>uP write bus address</p></div>
 </div>
 
-<a name="up_wdata"></a><a name="Topic39"></a><div class="CTopic TVariable LSystemVerilog last">
+<a name="up_wdata"></a><a name="Topic102"></a><div class="CTopic TVariable LSystemVerilog last">
  <div class="CTitle">up_wdata</div>
- <div id="NDPrototype39" class="NDPrototype WideForm"><div class="PSection PParameterSection CStyle"><div class="PParameterCells" data-WideColumnCount="3" data-NarrowColumnCount="2"><div class="PBeforeParameters" data-WideGridArea="1/1/2/2" data-NarrowGridArea="1/1/2/3" style="grid-area:1/1/2/2"><span class="SHKeyword">wire</span> [(</div><div class="PName InFirstParameterColumn InLastParameterColumn" data-WideGridArea="1/2/2/3" data-NarrowGridArea="2/1/3/2" style="grid-area:1/2/2/3">BUS_WIDTH*<span class="SHNumber">4</span></div><div class="PAfterParameters" data-WideGridArea="1/3/2/4" data-NarrowGridArea="3/1/4/3" style="grid-area:1/3/2/4">)<span class="SHNumber">-1</span>:<span class="SHNumber">0</span>] up_wdata</div></div></div></div>
+ <div id="NDPrototype102" class="NDPrototype WideForm"><div class="PSection PParameterSection CStyle"><div class="PParameterCells" data-WideColumnCount="3" data-NarrowColumnCount="2"><div class="PBeforeParameters" data-WideGridArea="1/1/2/2" data-NarrowGridArea="1/1/2/3" style="grid-area:1/1/2/2"><span class="SHKeyword">wire</span> [(</div><div class="PName InFirstParameterColumn InLastParameterColumn" data-WideGridArea="1/2/2/3" data-NarrowGridArea="2/1/3/2" style="grid-area:1/2/2/3">BUS_WIDTH*<span class="SHNumber">8</span></div><div class="PAfterParameters" data-WideGridArea="1/3/2/4" data-NarrowGridArea="3/1/4/3" style="grid-area:1/3/2/4">)<span class="SHNumber">-1</span>:<span class="SHNumber">0</span>] up_wdata</div></div></div></div>
  <div class="CBody"><p>uP write bus data</p></div>
 </div>
 

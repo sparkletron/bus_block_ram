@@ -101,7 +101,7 @@ module wishbone_classic_block_ram #(
   reg                       up_rack;
   // var: up_raddr
   // uP read bus address
-  wire  [ADDRESS_WIDTH-3:0] up_raddr;
+  wire  [ADDRESS_WIDTH-(ADDRESS_WIDTH/16)-1:0] up_raddr;
   // var: up_rdata
   // uP read bus request
   wire  [(BUS_WIDTH*4)-1:0] up_rdata;
@@ -114,7 +114,7 @@ module wishbone_classic_block_ram #(
   reg                       up_wack;
   // var: up_waddr
   // uP write bus address
-  wire  [ADDRESS_WIDTH-3:0] up_waddr;
+  wire  [ADDRESS_WIDTH-(ADDRESS_WIDTH/16)-1:0] up_waddr;
   // var: up_wdata
   // uP write bus data
   wire  [(BUS_WIDTH*4)-1:0] up_wdata;
@@ -165,13 +165,13 @@ module wishbone_classic_block_ram #(
     .rd_rstn(~rst),
     .rd_en(up_rreq),
     .rd_data(up_rdata),
-    .rd_addr(up_raddr[c_PWR_RAM+1:2]),
+    .rd_addr(up_raddr[c_PWR_RAM-1:0]),
     .wr_clk(clk),
     .wr_rstn(~rst),
     .wr_en(up_wreq),
     .wr_ben(s_wb_sel),
     .wr_data(up_wdata),
-    .wr_addr(up_waddr[c_PWR_RAM+1:2])
+    .wr_addr(up_waddr[c_PWR_RAM-1:0])
   );
 
   // register reqest to the ack since it will always happen, even if the RAM address is invalid.

@@ -13,6 +13,11 @@ filesets:
     files:
       - tb/tb_wishbone_slave.v : { file_type: verilogSource }
 
+  tb_cocotb:
+    files:
+      - tb/tb_wishbone_cocotb.py : {file_type : user, copyto : .}
+      - tb/tb_wishbone_cocotb.v : { file_type: verilogSource }
+
   dep:
     depend:
       - AFRL:utility:helper:1.0.0
@@ -34,3 +39,58 @@ targets:
     default_tool: icarus
     toplevel: tb_wishbone_slave
     filesets_append: [tb, dep_tb]
+    parameters:
+      - ADDRESS_WIDTH
+      - BUS_WIDTH
+      - DEPTH
+      - RAM_TYPE
+      - HEX_FILE
+
+  sim_cocotb:
+    <<: *default
+    description: Cocotb unit tests
+    flow: sim
+    flow_options:
+      tool: icarus
+      cocotb_module: tb_wishbone_cocotb
+      timescale: 1ns/1ns
+      vcs_options: [-timescale=1ns/1ns]
+    filesets_append: [tb_cocotb]
+    toplevel: tb_cocotb
+    parameters:
+      - ADDRESS_WIDTH
+      - BUS_WIDTH
+      - DEPTH
+      - RAM_TYPE
+      - HEX_FILE
+
+parameters:
+  ADDRESS_WIDTH:
+    datatype    : int
+    default     : 32
+    description : AXI lite bus address width
+    paramtype   : vlogparam
+
+  DEPTH:
+    datatype    : int
+    default     : 256
+    description : Depth of RAM
+    paramtype   : vlogparam
+
+  RAM_TYPE:
+    datatype    : str
+    default     : block
+    description : Type of RAM, block is default.
+    paramtype   : vlogparam
+
+  HEX_FILE:
+    datatype    : file
+    default     : ""
+    description : Input hex file name to initialize data to.
+    paramtype   : vlogparam
+
+  BUS_WIDTH:
+    datatype    : int
+    default     : 4
+    description : axi data bus size in bytes.
+    paramtype   : vlogparam

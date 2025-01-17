@@ -1,1 +1,1 @@
-﻿NDMenu.OnSectionLoaded("files.js",[[1,"axi_lite_block_ram.v"],[1,"wishbone_classic_block_ram.v"]]);
+﻿NDMenu.OnSectionLoaded("files.js",[[2,"bus_block_ram","File:",[[1,"axi_lite_block_ram.v"],[1,"wishbone_classic_block_ram.v"]]],[2,"tb_bus_block_ram","File2:",[[1,"tb_axi_lite_cocotb.py"],[1,"tb_axi_lite_cocotb.v"],[1,"tb_axi_lite_slave.v"],[1,"tb_wishbone_cocotb.py"],[1,"tb_wishbone_cocotb.v"],[1,"tb_wishbone_slave.v"]]]]);
