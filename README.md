@@ -27,17 +27,6 @@
 
   - [bus_block_ram.pdf](docs/manual/bus_block_ram.pdf)
   - [github page](https://johnathan-convertino-afrl.github.io/bus_block_ram/)
-
-### DEPENDENCIES
-#### Build
-
-  - AFRL:utility:helper:1.0.0
-  
-#### Simulation
-
-  - AFRL:simulation:fifo_stimulator
-  - AFRL:simulation:clock_stimulator
-  - AFRL:utility:sim_helper
   
 ### PARAMETERS
 
@@ -56,6 +45,9 @@
 #### TB
 
 * tb_wishbone_slave.v
+* tb_axi_lite_slave.v
+* tb_axi_lite_cocotb
+* tb_wishbone_cocotb
   
 ### FUSESOC
 
@@ -67,4 +59,6 @@
 
 * RUN WITH: (fusesoc run --target=sim VENDER:CORE:NAME:VERSION)
   - default (for IP integration builds)
+  - lint
   - sim
+  - sim_cocotb

@@ -34,6 +34,16 @@ targets:
     description: Default for IP intergration.
     filesets: [src, dep]
 
+  lint:
+    description: Lint with Verible
+    filesets: [src]
+    toplevel: axi_lite_block_ram
+    default_tool: veriblelint
+    tools:
+      veriblelint:
+        rules:
+         - "-explicit-parameter-storage-type,-parameter-name-style,-line-length,-no-trailing-spaces"
+
   sim: &sim
     <<: *default
     description: Simple read/write register check.
