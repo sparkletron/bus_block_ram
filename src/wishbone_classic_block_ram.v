@@ -60,6 +60,7 @@
  *   s_wb_ack       - Bus transaction terminated
  *   s_wb_data_o    - Output data
  *   s_wb_err       - Active high when a bus error is present
+ *
  */
 module wishbone_classic_block_ram #(
     parameter ADDRESS_WIDTH     = 32,

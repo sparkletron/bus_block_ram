@@ -68,6 +68,7 @@
  *   s_axi_rdata    - Axi Lite r data
  *   s_axi_rresp    - Axi Lite r resp
  *   s_axi_rready   - Axi Lite r ready
+ *
  */
 module axi_lite_block_ram #(
     parameter ADDRESS_WIDTH     = 32,
