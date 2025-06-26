@@ -1,5 +1,6 @@
 # BUS Block RAM
 ### Create block RAM using various bus interfaces (Wishbone Classic, AXI LITE)
+---
 
 ![image](docs/manual/img/AFRL.png)
 
